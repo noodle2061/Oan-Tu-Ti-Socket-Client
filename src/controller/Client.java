@@ -10,5 +10,5 @@ package controller;
  * @author admin
  */
 public class Client {
-
+  System.out.println("hello");
 }
