@@ -33,14 +33,13 @@ public class ClientSocketHandle implements Runnable {
     public void run() {
         try {
             while (true) {
-                
-
                 String receivedMessage = reader.readLine();
                 String[] msg = receivedMessage.trim().split(" ");
                 String res = msg[0];
                 
-               
-                
+//                if (res[0].equals("")) {
+//                    
+//                }
             }
         } catch (Exception e) {
             System.out.println(e);

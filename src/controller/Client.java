@@ -102,7 +102,7 @@ public class Client {
         }
     }
     
-    public static void CloseView(View viewName) {
+    public static void CloseView(View viewName) { // closeView(view.LOGIN)
         switch (viewName) {
             case LOGIN:
                 loginFrm.dispose();
