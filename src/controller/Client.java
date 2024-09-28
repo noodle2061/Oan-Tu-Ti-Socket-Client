@@ -4,6 +4,8 @@
  */
 package controller;
 
+import view.DeleteAccountFrm;
+import view.LoginFrm;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
