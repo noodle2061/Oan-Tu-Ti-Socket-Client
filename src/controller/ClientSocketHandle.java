@@ -6,9 +6,13 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,8 +24,14 @@ public class ClientSocketHandle implements Runnable {
     private BufferedReader reader;
     private Socket socket;
     
-    public ClientSocketHandle (Socket socket) throws UnknownHostException {
-        this.socket = socket;
+    public ClientSocketHandle (Socket socket) {
+        try {
+            this.socket = socket;
+            writer = new PrintWriter(socket.getOutputStream());
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
     
     public void write(String message) {
@@ -31,11 +41,14 @@ public class ClientSocketHandle implements Runnable {
     
     @Override
     public void run() {
+        write("hello");
         try {
             while (true) {
                 String receivedMessage = reader.readLine();
                 String[] msg = receivedMessage.trim().split(" ");
                 String res = msg[0];
+                
+                System.out.println(res);
                 
 //                if (res[0].equals("")) {
 //                    

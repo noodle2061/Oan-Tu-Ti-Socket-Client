@@ -27,12 +27,12 @@ public class Client {
 
     public Client() {
         try {
-            socket = new Socket();
+            socket = new Socket("localhost", 9989);
             loginFrm = new LoginFrm();
             loginFrm.setVisible(true);
             socketHandle = new ClientSocketHandle(socket);
             socketHandle.run();
-        } catch (UnknownHostException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
