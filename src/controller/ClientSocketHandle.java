@@ -45,7 +45,7 @@ public class ClientSocketHandle implements Runnable {
         try {
             while (true) {
                 String receivedMessage = reader.readLine();
-                String[] msg = receivedMessage.trim().split(" ");
+                String[] msg = receivedMessage.trim().split("$");
                 String res = msg[0];
                 
                 System.out.println(res);

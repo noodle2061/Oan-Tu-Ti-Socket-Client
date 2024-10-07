@@ -36,6 +36,13 @@ public class Client {
             System.out.println(e);
         }
     }
+    
+    public enum View {
+        LOGIN,
+        REGISTER,
+        DELETEACCOUNT,
+        CHANGEPASSSWORD
+    }
 
     public static void OpenView(View viewName) {
         switch (viewName) {
@@ -52,7 +59,7 @@ public class Client {
         }
     }
     
-    public static void OpenView(View viewName, int x, int y) {
+    public static void OpenView(View viewName, int x, int y) { // mở một view ở vị trí x,y trên màn hình
         switch (viewName) {
             case LOGIN:
                 loginFrm = new LoginFrm();
@@ -121,12 +128,7 @@ public class Client {
         }
     }
 
-    public enum View {
-        LOGIN,
-        REGISTER,
-        DELETEACCOUNT,
-        CHANGEPASSSWORD
-    }
+    
 
     public static void main(String[] args) {
         new Client();

@@ -135,7 +135,7 @@ public class LoginFrm extends javax.swing.JFrame {
             } else if (password.equals("")) {
                 showErr("Hãy nhập mật khẩu!!");
             } else {
-                Client.socketHandle.write("login-request " + name + " " + password);
+                Client.socketHandle.write("login-request$" + name + " " + password);
             }
             
         } catch (Exception e) {
