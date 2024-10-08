@@ -5,6 +5,15 @@
 package view;
 
 import controller.Client;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -16,10 +25,14 @@ public class RegisterFrm extends javax.swing.JFrame {
      * Creates new form RegisterFrm
      */
     
-    public void showErr(String er) {
-        errLabel.setText(er);
-    }
+    private JLabel imageLabel;
+    private BufferedImage selectedImage;
     
+    
+    public void notify(String er) {
+        JOptionPane.showMessageDialog(this, er, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public RegisterFrm() {
         initComponents();
     }
@@ -33,14 +46,22 @@ public class RegisterFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jFileChooser2 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         userName = new javax.swing.JTextField();
         passwordValue = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         registerButton = new javax.swing.JButton();
-        errLabel = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        returnPasswordValue = new javax.swing.JPasswordField();
+        chooseImg = new javax.swing.JButton();
+        image = new javax.swing.JPanel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,9 +79,6 @@ public class RegisterFrm extends javax.swing.JFrame {
             }
         });
 
-        errLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        errLabel.setForeground(new java.awt.Color(255, 51, 51));
-
         submitButton.setText("Đăng nhập");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,17 +86,45 @@ public class RegisterFrm extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Nhập lại password:");
+
+        returnPasswordValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnPasswordValueActionPerformed(evt);
+            }
+        });
+
+        chooseImg.setText("Chọn ảnh đại diện");
+        chooseImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseImgActionPerformed(evt);
+            }
+        });
+
+        image.setBackground(new java.awt.Color(153, 153, 153));
+        image.setForeground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout imageLayout = new javax.swing.GroupLayout(image);
+        image.setLayout(imageLayout);
+        imageLayout.setHorizontalGroup(
+            imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 178, Short.MAX_VALUE)
+        );
+        imageLayout.setVerticalGroup(
+            imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 135, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(136, 136, 136))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -88,24 +134,26 @@ public class RegisterFrm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4))
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(userName)
-                                    .addComponent(passwordValue, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                                    .addComponent(passwordValue, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                    .addComponent(returnPasswordValue))))
+                        .addGap(58, 58, 58))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chooseImg)
+                        .addGap(18, 18, 18)
+                        .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,11 +161,21 @@ public class RegisterFrm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(passwordValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(returnPasswordValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chooseImg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registerButton)
-                    .addComponent(submitButton))
-                .addGap(72, 72, 72))
+                    .addComponent(submitButton)))
         );
 
         pack();
@@ -128,9 +186,9 @@ public class RegisterFrm extends javax.swing.JFrame {
         String name = userName.getText();
         String pass = String.copyValueOf(passwordValue.getPassword());
         if (name.equals("")) {
-            showErr("Hãy nhập tên vào!!!");
+            notify("Hãy nhập tên vào!!!");
         } else if (pass.equals("")) {
-            showErr("Hãy nhập mật khẩu vào!!!");
+            notify("Hãy nhập mật khẩu vào!!!");
         } else {
             Client.socketHandle.write("register-request " + name + " " + pass);
         }
@@ -143,6 +201,53 @@ public class RegisterFrm extends javax.swing.JFrame {
         Client.CloseView(Client.View.REGISTER);
         Client.OpenView(Client.View.LOGIN, x, y);
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void returnPasswordValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnPasswordValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_returnPasswordValueActionPerformed
+
+    private void chooseImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseImgActionPerformed
+        // TODO add your handling code here:
+        // Tạo đối tượng JFileChooser để mở hộp thoại chọn file
+        JFileChooser fileChooser = new JFileChooser();
+        imageLabel = new JLabel();
+        fileChooser.setDialogTitle("Chọn ảnh đại diện");
+
+        // Chỉ cho phép chọn file
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        // Bộ lọc chỉ cho phép chọn các định dạng ảnh
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png", "jpeg", "gif"));
+
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            // Kiểm tra xem tệp được chọn có phải là ảnh hay không
+            String fileName = selectedFile.getName().toLowerCase();
+            if (!(fileName.endsWith(".jpg") || fileName.endsWith(".png") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif"))) {
+                notify("Tệp được chọn không phải là định dạng ảnh hợp lệ.");
+                return;
+            }
+
+            // Kiểm tra kích thước tệp (ví dụ: không quá 5MB)
+            long fileSizeInMB = selectedFile.length() / (1024 * 1024);
+            if (fileSizeInMB > 5) {
+                notify("Kích thước tệp quá lớn. Vui lòng chọn tệp nhỏ hơn 5MB.");
+                return;
+            }
+
+            // Nếu tất cả đều đạt yêu cầu, hiển thị ảnh lên vùng giao diện
+            try {
+                BufferedImage image = ImageIO.read(selectedFile);
+                ImageIcon imageIcon = new ImageIcon(image);
+                // Giả sử bạn có một JLabel tên là "imgageLabel" để hiển thị ảnh
+                imageLabel.setIcon(imageIcon);
+            } catch (IOException ex) {
+                notify("Đã xảy ra lỗi khi tải ảnh.");
+            }
+        }
+    }//GEN-LAST:event_chooseImgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,12 +286,18 @@ public class RegisterFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel errLabel;
+    private javax.swing.JButton chooseImg;
+    private javax.swing.JPanel image;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField passwordValue;
     private javax.swing.JButton registerButton;
+    private javax.swing.JPasswordField returnPasswordValue;
     private javax.swing.JButton submitButton;
     private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables

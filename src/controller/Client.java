@@ -7,8 +7,6 @@ package controller;
 import view.DeleteAccountFrm;
 import view.LoginFrm;
 import java.net.Socket;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import view.ChangePasswordFrm;
 import view.RegisterFrm;
 
@@ -104,7 +102,7 @@ public class Client {
                 changePasswordFrm.setVisible(true);
                 break;
 
-            default:
+            default:    
                 throw new AssertionError();
         }
     }

@@ -35,6 +35,7 @@ public class ClientSocketHandle implements Runnable {
     }
     
     public void write(String message) {
+        System.out.println(message);
         writer.println(message);
         writer.flush();
     }
@@ -45,14 +46,10 @@ public class ClientSocketHandle implements Runnable {
         try {
             while (true) {
                 String receivedMessage = reader.readLine();
-                String[] msg = receivedMessage.trim().split("$");
-                String res = msg[0];
+                String[] msg = receivedMessage.trim().split("\\$");
+                String type = msg[0];
                 
-                System.out.println(res);
                 
-//                if (res[0].equals("")) {
-//                    
-//                }
             }
         } catch (Exception e) {
             System.out.println(e);
